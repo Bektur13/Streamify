@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@nestjs/common": "^11.0.20",
+    "@nestjs/core": "^11.0.20",
+    "@prisma/client": "^6.6.0",
+    "graphql-upload": "^17.0.0",
+    "prisma": "^6.6.0"
+  },
+  "scripts": {
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio"
+  },
+  "devDependencies": {
+    "@types/graphql-upload": "^17.0.0"
+  }
+}
