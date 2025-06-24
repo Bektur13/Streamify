@@ -4,15 +4,12 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
-import * as graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js';
+import { graphqlUploadExpress } from 'graphql-upload-minimal';
 import { RedisStore } from 'connect-redis';
 import { CoreModule } from './core/core.module';
-
 import { RedisService } from './core/redis/redis.service';
-import { ms, StringValue } from './shared/utils/ms.util';
-
+import { ms, type StringValue } from './shared/utils/ms.util';
 import { parseBoolean } from './shared/utils/parse-boolean.util';
-import { log } from 'console';
 
 
 async function bootstrap() {

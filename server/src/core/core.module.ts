@@ -19,3 +19,4 @@ import { RedisModule } from './redis/redis.module';
         RedisModule,
     ],
 })
+export class CoreModule {}
