@@ -15,7 +15,7 @@ datasource db {
 }
 
 model User {
-  id           String    @id @defualt(uuid())
+  id           String    @id @default(uuid())
   email        String    @unique
   password     String
   username     String    @unique
@@ -23,7 +23,7 @@ model User {
   avatar       String?
   bio          String?
   createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @updateAt @map("updated_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
 
   @@map("users")
 }
