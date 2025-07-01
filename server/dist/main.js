@@ -15,9 +15,9 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(core_module_1.CoreModule, { rawBody: true });
     const config = app.get(config_1.ConfigService);
     const redis = app.get(redis_service_1.RedisService);
+    app.enableShutdownHooks();
     app.use(cookieParser(config.getOrThrow('COOKIES_SECRET')));
-    await app.listen(process.env.PORT ?? 3000);
-    app.use(config.getOrThrow('GRPAHQL_PREFIX'), (0, graphql_upload_minimal_1.graphqlUploadExpress)());
+    app.use(config.getOrThrow('GRAPHQL_PREFIX'), (0, graphql_upload_minimal_1.graphqlUploadExpress)());
     app.useGlobalPipes(new common_1.ValidationPipe({
         transform: true
     }));
@@ -27,7 +27,7 @@ async function bootstrap() {
         resave: false,
         saveUninitialized: false,
         cookie: {
-            domain: config.getOrThrow('SESSION_DOMIAN'),
+            domain: config.getOrThrow('SESSION_DOMAIN'),
             maxAge: (0, ms_util_1.ms)(config.getOrThrow('SESSION_MAX_AGE')),
             httpOnly: (0, parse_boolean_util_1.parseBoolean)(config.getOrThrow('SESSION_HTTP_ONLY')),
             secure: (0, parse_boolean_util_1.parseBoolean)(config.getOrThrow('SESSION_SECURE')),
