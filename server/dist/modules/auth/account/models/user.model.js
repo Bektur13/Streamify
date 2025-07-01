@@ -28,7 +28,7 @@ __decorate([
     __metadata("design:type", String)
 ], UserModel.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String),
+    (0, graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], UserModel.prototype, "email", void 0);
 __decorate([

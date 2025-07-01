@@ -1,4 +1,4 @@
-import type { User } from '@prisma/client';
+import type { User } from 'generated/prisma';
 export declare class UserModel implements User {
     id: string;
     email: string;
