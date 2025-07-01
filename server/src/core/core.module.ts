@@ -6,6 +6,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { RedisModule } from './redis/redis.module';
+import { AccountModule } from 'src/modules/auth/account/account.module';
 
 @Module({
     imports: [
@@ -16,6 +17,7 @@ import { RedisModule } from './redis/redis.module';
             inject: [ConfigService],
         }),
         PrismaModule,
+        AccountModule,
         RedisModule,
     ],
 })
