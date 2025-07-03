@@ -1,12 +1,42 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/core/prisma/prisma.service';
-
+import { CreateUserInput } from './inputs/create-user.input';
+import * as bcrypt from 'bcryptjs'
 @Injectable()
 export class AccountService {
     constructor(private readonly prismaSevice: PrismaService) {}
 
     async findAll() {
         return this.prismaSevice.user.findMany();
+    }
+
+    public async create(input: CreateUserInput) {
+
+        const saltRounds = 10; 
+
+        const { username, email, password } = input;
+
+        const existingUser = await this.prismaSevice.user.findFirst({
+            where: {
+                OR: [{ username }, { email }],
+            },
+        });
+
+        if(existingUser) {
+        }
+        throw new ConflictException("Username or email alrady exist")
+
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+        await this.prismaSevice.user.create({
+            data: {
+                username,
+                email,
+                password: hashedPassword,
+                displayName: username
+            }
+        })
+        return true;
     }
 
 }

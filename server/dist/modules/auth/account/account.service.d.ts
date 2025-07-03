@@ -1,4 +1,5 @@
 import { PrismaService } from 'src/core/prisma/prisma.service';
+import { CreateUserInput } from './inputs/create-user.input';
 export declare class AccountService {
     private readonly prismaSevice;
     constructor(prismaSevice: PrismaService);
@@ -13,4 +14,5 @@ export declare class AccountService {
         createdAt: Date;
         updatedAt: Date;
     }[]>;
+    create(input: CreateUserInput): Promise<boolean>;
 }
