@@ -1,5 +1,4 @@
 import { AccountService } from './account.service';
-import { UserModel } from './models/user.model';
 import { CreateUserInput } from './inputs/create-user.input';
 export declare class AccountResolver {
     private readonly accountService;
@@ -15,5 +14,5 @@ export declare class AccountResolver {
         createdAt: Date;
         updatedAt: Date;
     }[]>;
-    create(input: CreateUserInput): Promise<UserModel>;
+    create(input: CreateUserInput): Promise<Boolean>;
 }

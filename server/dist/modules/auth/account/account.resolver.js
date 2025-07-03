@@ -37,7 +37,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AccountResolver.prototype, "findAll", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => user_model_1.UserModel, { name: 'createUser' }),
+    (0, graphql_1.Mutation)(() => Boolean, { name: 'createUser' }),
     __param(0, (0, graphql_1.Args)('data')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_input_1.CreateUserInput]),

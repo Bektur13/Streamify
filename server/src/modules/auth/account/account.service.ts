@@ -23,8 +23,14 @@ export class AccountService {
         });
 
         if(existingUser) {
+            if(existingUser.username === username) {
+                throw new ConflictException(`Username '${username}' already exists.`);
+            }
+            if(existingUser.email === email) {
+                throw new ConflictException(`Email '${email}' is already exists.`)
+            }
+            throw new ConflictException("User with provided username or emailalready exists.")
         }
-        throw new ConflictException("Username or email alrady exist")
 
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 

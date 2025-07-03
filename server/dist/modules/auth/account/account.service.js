@@ -30,8 +30,14 @@ let AccountService = class AccountService {
             },
         });
         if (existingUser) {
+            if (existingUser.username === username) {
+                throw new common_1.ConflictException(`Username '${username}' already exists.`);
+            }
+            if (existingUser.email === email) {
+                throw new common_1.ConflictException(`Email '${email}' is already exists.`);
+            }
+            throw new common_1.ConflictException("User with provided username or emailalready exists.");
         }
-        throw new common_1.ConflictException("Username or email alrady exist");
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         await this.prismaSevice.user.create({
             data: {
