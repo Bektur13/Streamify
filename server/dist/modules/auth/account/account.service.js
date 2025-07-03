@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../../core/prisma/prisma.service");
-const _1 = require("");
+const bcrypt = require("bcryptjs");
 let AccountService = class AccountService {
     prismaSevice;
     constructor(prismaSevice) {
@@ -22,6 +22,7 @@ let AccountService = class AccountService {
         return this.prismaSevice.user.findMany();
     }
     async create(input) {
+        const saltRounds = 10;
         const { username, email, password } = input;
         const existingUser = await this.prismaSevice.user.findFirst({
             where: {
@@ -31,7 +32,7 @@ let AccountService = class AccountService {
         if (existingUser) {
         }
         throw new common_1.ConflictException("Username or email alrady exist");
-        const hashedPassword = await (0, _1.hash)(password);
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
         await this.prismaSevice.user.create({
             data: {
                 username,

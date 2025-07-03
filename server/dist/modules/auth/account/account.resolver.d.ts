@@ -1,4 +1,6 @@
 import { AccountService } from './account.service';
+import { UserModel } from './models/user.model';
+import { CreateUserInput } from './inputs/create-user.input';
 export declare class AccountResolver {
     private readonly accountService;
     constructor(accountService: AccountService);
@@ -13,4 +15,5 @@ export declare class AccountResolver {
         createdAt: Date;
         updatedAt: Date;
     }[]>;
+    create(input: CreateUserInput): Promise<UserModel>;
 }
