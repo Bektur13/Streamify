@@ -1,6 +1,6 @@
 import { InternalServerErrorException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { Request } from "@nestjs/common";
+import type { Request } from "@nestjs/common";
 
 import type { User } from "../../../generated/prisma";
 
