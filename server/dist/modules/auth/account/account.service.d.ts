@@ -4,10 +4,10 @@ export declare class AccountService {
     private readonly prismaSevice;
     constructor(prismaSevice: PrismaService);
     findAll(): Promise<{
-        id: string;
+        username: string;
         email: string;
         password: string;
-        username: string;
+        id: string;
         displayName: string;
         avatar: string | null;
         bio: string | null;
