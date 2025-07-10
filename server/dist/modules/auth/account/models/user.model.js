@@ -45,11 +45,11 @@ __decorate([
 ], UserModel.prototype, "displayName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], UserModel.prototype, "avatar", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], UserModel.prototype, "bio", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date),

@@ -10,14 +10,14 @@ exports.SessionModule = void 0;
 const common_1 = require("@nestjs/common");
 const session_service_1 = require("./session.service");
 const session_resolver_1 = require("./session.resolver");
-const prisma_module_1 = require("../core/prisma/prisma.module");
 const config_1 = require("@nestjs/config");
+const redis_module_1 = require("../core/redis/redis.module");
 let SessionModule = class SessionModule {
 };
 exports.SessionModule = SessionModule;
 exports.SessionModule = SessionModule = __decorate([
     (0, common_1.Module)({
-        imports: [prisma_module_1.PrismaModule, config_1.ConfigService],
+        imports: [redis_module_1.RedisModule, config_1.ConfigModule],
         providers: [session_resolver_1.SessionResolver, session_service_1.SessionService],
         exports: [session_service_1.SessionService]
     })

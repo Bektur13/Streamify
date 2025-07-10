@@ -4,24 +4,26 @@ import { ConfigService } from '@nestjs/config';
 import * as argon2 from 'argon2';
 import { PrismaService } from 'src/core/prisma/prisma.service';
 import type { User } from "../../generated/prisma";
-import { LoginInput } from 'src/modules/auth/account/inputs/login.input';
+import { LoginInput } from 'src/session/inputs/login.input';
 
 import { saveSession, destroySession } from 'src/shared/utils/session.util';
+import { RedisService } from 'src/core/redis/redis.service';
 
 @Injectable()
 export class SessionService {
     constructor(
         private readonly prismaService: PrismaService,
-        private readonly configService: ConfigService
+        private readonly configService: ConfigService, 
+        private readonly redisService: RedisService
     ) {}
     
-    public async login(req: Request, input: LoginInput): Promise<User> {
+    public async login(req: Request, input: LoginInput) {
         const { login, password } = input;
 
         const user = await this.prismaService.user.findFirst({
             where: {
-                OR: [{ username: login }, { email: login }],
-            },
+                OR: [{ username: {equals: login} }, { email: {equals: login} }],
+            }
         });
 
         if(!user) {
@@ -34,21 +36,11 @@ export class SessionService {
             throw new UnauthorizedException('Invalid password.')
         }
 
-        try {
-            await saveSession(req, user);
-            return user;
-        } catch(error) {
-            throw new InternalServerErrorException('Failed to save session after login.')
-        }
+        return saveSession(req, user);
     }
 
-    public async logout(req: Request): Promise<boolean> {
-        try {
-            await destroySession(req, this.configService);
-            return true;
-        } catch(error) {
-            throw new InternalServerErrorException("Failed to destroy session during logout.")
-        }
+    public async logout(req: Request) {
+        return destroySession(req, this.configService)
     }
 
     public async getSessionUser(req: Request): Promise<User | null> {

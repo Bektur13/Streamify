@@ -2,12 +2,14 @@ import { Request } from 'express-session';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from 'src/core/prisma/prisma.service';
 import type { User } from "../../generated/prisma";
-import { LoginInput } from 'src/modules/auth/account/inputs/login.input';
+import { LoginInput } from 'src/session/inputs/login.input';
+import { RedisService } from 'src/core/redis/redis.service';
 export declare class SessionService {
     private readonly prismaService;
     private readonly configService;
-    constructor(prismaService: PrismaService, configService: ConfigService);
-    login(req: Request, input: LoginInput): Promise<User>;
-    logout(req: Request): Promise<boolean>;
+    private readonly redisService;
+    constructor(prismaService: PrismaService, configService: ConfigService, redisService: RedisService);
+    login(req: Request, input: LoginInput): Promise<unknown>;
+    logout(req: Request): Promise<unknown>;
     getSessionUser(req: Request): Promise<User | null>;
 }

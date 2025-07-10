@@ -15,19 +15,22 @@ const config_1 = require("@nestjs/config");
 const argon2 = require("argon2");
 const prisma_service_1 = require("../core/prisma/prisma.service");
 const session_util_1 = require("../shared/utils/session.util");
+const redis_service_1 = require("../core/redis/redis.service");
 let SessionService = class SessionService {
     prismaService;
     configService;
-    constructor(prismaService, configService) {
+    redisService;
+    constructor(prismaService, configService, redisService) {
         this.prismaService = prismaService;
         this.configService = configService;
+        this.redisService = redisService;
     }
     async login(req, input) {
         const { login, password } = input;
         const user = await this.prismaService.user.findFirst({
             where: {
-                OR: [{ username: login }, { email: login }],
-            },
+                OR: [{ username: { equals: login } }, { email: { equals: login } }],
+            }
         });
         if (!user) {
             throw new common_1.NotFoundException('User not found with provided credentials.');
@@ -36,22 +39,10 @@ let SessionService = class SessionService {
         if (!passwordValid) {
             throw new common_1.UnauthorizedException('Invalid password.');
         }
-        try {
-            await (0, session_util_1.saveSession)(req, user);
-            return user;
-        }
-        catch (error) {
-            throw new common_1.InternalServerErrorException('Failed to save session after login.');
-        }
+        return (0, session_util_1.saveSession)(req, user);
     }
     async logout(req) {
-        try {
-            await (0, session_util_1.destroySession)(req, this.configService);
-            return true;
-        }
-        catch (error) {
-            throw new common_1.InternalServerErrorException("Failed to destroy session during logout.");
-        }
+        return (0, session_util_1.destroySession)(req, this.configService);
     }
     async getSessionUser(req) {
         if (!req.session || !req.session.userId) {
@@ -67,6 +58,7 @@ exports.SessionService = SessionService;
 exports.SessionService = SessionService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,
-        config_1.ConfigService])
+        config_1.ConfigService,
+        redis_service_1.RedisService])
 ], SessionService);
 //# sourceMappingURL=session.service.js.map
