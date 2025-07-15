@@ -6,8 +6,9 @@ import type { User } from "../../../generated/prisma";
 export function saveSession(req: Request, user: User,
 ) {
     return new Promise((resolve, reject) => {
-        req.session.createdAt = new Date()
+        
         req.session.userId = user.id
+        req.session.createdAt = new Date()
 
         req.session.save(err => {
             if(err) {
@@ -28,12 +29,12 @@ export function destroySession(req: Request, ConfigService: ConfigService) {
     return new Promise((resolve, reject) => {
         req.session.destroy(err => {
             if(err) {
-                return new InternalServerErrorException(
-                    'Не удалось завершить сессию'
+                return reject(
+                    new InternalServerErrorException('Не удалось завершить сессию')
                 )
             }
 
-            req.res.clearCookie(
+            req.res?.clearCookie(
                 ConfigService.getOrThrow<string>('SESSION_NAME')
             )
 
