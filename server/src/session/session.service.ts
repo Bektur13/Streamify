@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import * as argon2 from 'argon2';
 import { PrismaService } from 'src/core/prisma/prisma.service';
 import type { User } from "../../generated/prisma";
-import { LoginInput } from 'src/session/inputs/login.input';
+import { LoginInput } from './inputs/login.input';
 
 import { saveSession, destroySession } from 'src/shared/utils/session.util';
 import { RedisService } from 'src/core/redis/redis.service';

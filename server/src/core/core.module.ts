@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { RedisModule } from './redis/redis.module';
 import { AccountModule } from 'src/modules/auth/account/account.module';
+import { SessionModule } from 'src/session/session.module';
 
 @Module({
     imports: [
@@ -19,6 +20,7 @@ import { AccountModule } from 'src/modules/auth/account/account.module';
         PrismaModule,
         AccountModule,
         RedisModule,
+        SessionModule
     ],
 })
 export class CoreModule {}

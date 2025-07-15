@@ -1,6 +1,6 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/core/prisma/prisma.service';
-import { CreateUserInput } from '../../../session/inputs/create-user.input';
+import { CreateUserInput } from '../../../modules/auth/account/inputs/create-user.input';
 import * as bcrypt from 'bcryptjs'
 import { User } from 'generated/prisma';
 @Injectable()

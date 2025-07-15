@@ -16,7 +16,7 @@ exports.AccountResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const account_service_1 = require("./account.service");
 const user_model_1 = require("./models/user.model");
-const create_user_input_1 = require("../../../session/inputs/create-user.input");
+const create_user_input_1 = require("../../../modules/auth/account/inputs/create-user.input");
 let AccountResolver = class AccountResolver {
     accountService;
     constructor(accountService) {

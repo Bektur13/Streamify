@@ -1,5 +1,5 @@
 import { PrismaService } from 'src/core/prisma/prisma.service';
-import { CreateUserInput } from '../../../session/inputs/create-user.input';
+import { CreateUserInput } from '../../../modules/auth/account/inputs/create-user.input';
 export declare class AccountService {
     private readonly prismaSevice;
     constructor(prismaSevice: PrismaService);

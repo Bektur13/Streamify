@@ -47,7 +47,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SessionResolver.prototype, "logoutUser", null);
 exports.SessionResolver = SessionResolver = __decorate([
-    (0, graphql_1.Resolver)('Session'),
+    (0, graphql_1.Resolver)(() => user_model_1.UserModel),
     __metadata("design:paramtypes", [session_service_1.SessionService])
 ], SessionResolver);
 //# sourceMappingURL=session.resolver.js.map

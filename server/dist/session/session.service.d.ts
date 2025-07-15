@@ -2,7 +2,7 @@ import { Request } from 'express-session';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from 'src/core/prisma/prisma.service';
 import type { User } from "../../generated/prisma";
-import { LoginInput } from 'src/session/inputs/login.input';
+import { LoginInput } from './inputs/login.input';
 import { RedisService } from 'src/core/redis/redis.service';
 export declare class SessionService {
     private readonly prismaService;

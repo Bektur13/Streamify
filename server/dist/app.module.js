@@ -12,12 +12,14 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const account_module_1 = require("./modules/auth/account/account.module");
 const session_module_1 = require("./session/session.module");
+const core_module_1 = require("./core/core.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            core_module_1.CoreModule,
             account_module_1.AccountModule,
             session_module_1.SessionModule
         ],

@@ -16,6 +16,7 @@ const config_2 = require("@nestjs/config");
 const prisma_module_1 = require("./prisma/prisma.module");
 const redis_module_1 = require("./redis/redis.module");
 const account_module_1 = require("../modules/auth/account/account.module");
+const session_module_1 = require("../session/session.module");
 let CoreModule = class CoreModule {
 };
 exports.CoreModule = CoreModule;
@@ -31,6 +32,7 @@ exports.CoreModule = CoreModule = __decorate([
             prisma_module_1.PrismaModule,
             account_module_1.AccountModule,
             redis_module_1.RedisModule,
+            session_module_1.SessionModule
         ],
     })
 ], CoreModule);
