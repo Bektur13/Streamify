@@ -13,7 +13,7 @@ import { parseBoolean } from './shared/utils/parse-boolean.util';
 
 
 async function bootstrap() {
-  const app = await NestFactory.create(CoreModule, { rawBody: true})
+  const app = await NestFactory.create(AppModule, { rawBody: true})
 
   const config = app.get(ConfigService);
   
@@ -35,7 +35,7 @@ async function bootstrap() {
       resave: false,
       saveUninitialized: false,
       cookie: {
-        domain: config.getOrThrow<string>('SESSION_DOMAIN'),
+        // domain: config.getOrThrow<string>('SESSION_DOMAIN'),
         maxAge: ms(config.getOrThrow<StringValue>('SESSION_MAX_AGE')),
         httpOnly: parseBoolean(config.getOrThrow<string>('SESSION_HTTP_ONLY')),
         secure: parseBoolean(config.getOrThrow<string>('SESSION_SECURE')),
@@ -44,7 +44,7 @@ async function bootstrap() {
       store: new RedisStore({
         client: redis,
         prefix: config.getOrThrow<string>('SESSION_FOLDER'),
-        ttl: ms(config.getOrThrow<StringValue>('REDIS_TTL'))
+        ttl: Number(config.getOrThrow<StringValue>('REDIS_TTL'))
       })
     })
   )

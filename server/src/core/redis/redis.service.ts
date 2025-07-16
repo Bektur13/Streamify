@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { CreateRediDto } from './dto/create-redi.dto';
 import { UpdateRediDto } from './dto/update-redi.dto';
 import Redis from 'ioredis';

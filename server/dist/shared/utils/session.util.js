@@ -7,6 +7,7 @@ function saveSession(req, user) {
     return new Promise((resolve, reject) => {
         req.session.userId = user.id;
         req.session.createdAt = new Date();
+        console.log('Session before save: ', req.session);
         req.session.save(err => {
             if (err) {
                 return reject(new common_1.InternalServerErrorException('Не удалось сохранить сессию'));

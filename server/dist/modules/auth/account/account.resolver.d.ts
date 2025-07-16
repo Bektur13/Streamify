@@ -4,10 +4,10 @@ export declare class AccountResolver {
     private readonly accountService;
     constructor(accountService: AccountService);
     findAll(): Promise<{
-        id: string;
+        username: string;
         email: string;
         password: string;
-        username: string;
+        id: string;
         displayName: string;
         avatar: string | null;
         bio: string | null;

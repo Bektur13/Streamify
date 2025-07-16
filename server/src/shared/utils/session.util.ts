@@ -10,6 +10,8 @@ export function saveSession(req: Request, user: User,
         req.session.userId = user.id
         req.session.createdAt = new Date()
 
+        console.log('Session before save: ', req.session);
+
         req.session.save(err => {
             if(err) {
                 return reject(
