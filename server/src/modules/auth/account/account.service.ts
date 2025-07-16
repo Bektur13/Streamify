@@ -1,7 +1,7 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/core/prisma/prisma.service';
 import { CreateUserInput } from '../../../modules/auth/account/inputs/create-user.input';
-import * as bcrypt from 'bcryptjs'
+import * as argon2 from 'argon2'
 import { User } from 'generated/prisma';
 @Injectable()
 export class AccountService {
@@ -33,7 +33,7 @@ export class AccountService {
             throw new ConflictException("User with provided username or emailalready exists.")
         }
 
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
+        const hashedPassword = await argon2.hash(password);
 
         await this.prismaSevice.user.create({
             data: {
