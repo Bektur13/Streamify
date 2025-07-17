@@ -1,9 +1,9 @@
 import { InternalServerErrorException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import type { Request } from 'express-session'
+import type { Request } from 'express'
 import type { User } from "../../../generated/prisma";
 
-export function saveSession(req: Request, user: User,
+export async function saveSession(req: Request, user: User,
 ) {
     return new Promise((resolve, reject) => {
         

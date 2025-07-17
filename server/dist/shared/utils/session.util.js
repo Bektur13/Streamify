@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.saveSession = saveSession;
 exports.destroySession = destroySession;
 const common_1 = require("@nestjs/common");
-function saveSession(req, user) {
+async function saveSession(req, user) {
     return new Promise((resolve, reject) => {
         req.session.userId = user.id.toString();
         req.session.createdAt = new Date();

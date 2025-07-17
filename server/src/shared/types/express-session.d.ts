@@ -1,8 +1,14 @@
-import 'express-session'
+import session from 'express-session';
 
 declare module 'express-session' {
     interface SessionData {
-        userId?: string
-        createdAt?: Date | string
+        userId?: string;
+        createdAt: Date | string;
+    }
+}
+
+declare module 'express' {
+    interface Request {
+        session: session.Session & Partial<session.SessionData>;
     }
 }
