@@ -1,4 +1,4 @@
-import { Request } from 'express-session';
+import { Request } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from 'src/core/prisma/prisma.service';
 import type { User } from "../../generated/prisma";
