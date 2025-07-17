@@ -42,7 +42,7 @@ async function bootstrap() {
         sameSite: 'lax'
       },
       store: new RedisStore({
-        client: redis,
+        client: redis as any,
         prefix: config.getOrThrow<string>('SESSION_FOLDER'),
         ttl: Number(config.getOrThrow<StringValue>('REDIS_TTL'))
       })

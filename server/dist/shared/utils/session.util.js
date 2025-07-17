@@ -5,7 +5,7 @@ exports.destroySession = destroySession;
 const common_1 = require("@nestjs/common");
 function saveSession(req, user) {
     return new Promise((resolve, reject) => {
-        req.session.userId = user.id;
+        req.session.userId = user.id.toString();
         req.session.createdAt = new Date();
         console.log('Session before save: ', req.session);
         req.session.save(err => {

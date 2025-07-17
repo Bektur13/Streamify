@@ -7,7 +7,7 @@ export function saveSession(req: Request, user: User,
 ) {
     return new Promise((resolve, reject) => {
         
-        req.session.userId = user.id
+        req.session.userId = user.id.toString();
         req.session.createdAt = new Date()
 
         console.log('Session before save: ', req.session);
