@@ -14,6 +14,7 @@ export async function saveSession(req: Request, user: User,
 
         req.session.save(err => {
             if(err) {
+                console.log("Redis error is ", err)
                 return reject(
                     new InternalServerErrorException(
                         'Не удалось сохранить сессию'

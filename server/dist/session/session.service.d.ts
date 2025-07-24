@@ -9,7 +9,7 @@ export declare class SessionService {
     private readonly configService;
     private readonly redisService;
     constructor(prismaService: PrismaService, configService: ConfigService, redisService: RedisService);
-    login(req: Request, input: LoginInput): Promise<any>;
-    logout(req: Request): Promise<any>;
+    login(req: Request, input: LoginInput): Promise<unknown>;
+    logout(req: Request): Promise<unknown>;
     getSessionUser(req: Request): Promise<User | null>;
 }

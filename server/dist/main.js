@@ -5,7 +5,7 @@ const config_1 = require("@nestjs/config");
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
+const express_session_1 = require("express-session");
 const graphql_upload_minimal_1 = require("graphql-upload-minimal");
 const connect_redis_1 = require("connect-redis");
 const redis_service_1 = require("./core/redis/redis.service");
@@ -21,7 +21,7 @@ async function bootstrap() {
     app.useGlobalPipes(new common_1.ValidationPipe({
         transform: true
     }));
-    app.use(session({
+    app.use((0, express_session_1.default)({
         secret: config.getOrThrow('SESSION_SECRET'),
         name: config.getOrThrow('SESSION_NAME'),
         resave: false,
@@ -34,8 +34,7 @@ async function bootstrap() {
         },
         store: new connect_redis_1.RedisStore({
             client: redis,
-            prefix: config.getOrThrow('SESSION_FOLDER'),
-            ttl: Number(config.getOrThrow('REDIS_TTL'))
+            prefix: config.getOrThrow('SESSION_FOLDER')
         })
     }));
     app.enableCors({

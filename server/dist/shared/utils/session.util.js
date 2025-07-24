@@ -10,6 +10,7 @@ async function saveSession(req, user) {
         console.log('Session before save: ', req.session);
         req.session.save(err => {
             if (err) {
+                console.log("Redis error is ", err);
                 return reject(new common_1.InternalServerErrorException('Не удалось сохранить сессию'));
             }
             resolve(user);

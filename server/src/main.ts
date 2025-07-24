@@ -1,12 +1,12 @@
+import '@/shared/types/express-session'; // <-- keep as side-effect only, no import assignment
+import session from 'express-session';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
-import * as session from 'express-session';
 import { graphqlUploadExpress } from 'graphql-upload-minimal';
 import { RedisStore } from 'connect-redis';
-import { CoreModule } from './core/core.module';
 import { RedisService } from './core/redis/redis.service';
 import { ms, type StringValue } from './shared/utils/ms.util';
 import { parseBoolean } from './shared/utils/parse-boolean.util';
@@ -43,8 +43,7 @@ async function bootstrap() {
       },
       store: new RedisStore({
         client: redis as any,
-        prefix: config.getOrThrow<string>('SESSION_FOLDER'),
-        ttl: Number(config.getOrThrow<StringValue>('REDIS_TTL'))
+        prefix: config.getOrThrow<string>('SESSION_FOLDER')
       })
     })
   )
