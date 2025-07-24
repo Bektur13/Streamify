@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGraphQLConfig = getGraphQLConfig;
 const path_1 = require("path");
-const is_dev_util_1 = require("../../shared/utils/is-dev.util");
+const is_dev_util_1 = require("@/shared/utils/is-dev.util");
 function getGraphQLConfig(configService) {
     return {
         playground: (0, is_dev_util_1.isDev)(configService),

@@ -15,8 +15,8 @@ const apollo_1 = require("@nestjs/apollo");
 const config_2 = require("@nestjs/config");
 const prisma_module_1 = require("./prisma/prisma.module");
 const redis_module_1 = require("./redis/redis.module");
-const account_module_1 = require("../modules/auth/account/account.module");
-const session_module_1 = require("../session/session.module");
+const account_module_1 = require("@/modules/auth/account/account.module");
+const session_module_1 = require("@/session/session.module");
 let CoreModule = class CoreModule {
 };
 exports.CoreModule = CoreModule;

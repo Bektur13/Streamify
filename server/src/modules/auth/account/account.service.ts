@@ -1,8 +1,8 @@
 import { ConflictException, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/core/prisma/prisma.service';
+import { PrismaService } from '@/core/prisma/prisma.service';
 import { CreateUserInput } from '../../../modules/auth/account/inputs/create-user.input';
 import * as argon2 from 'argon2'
-import { User } from 'generated/prisma';
+import { User } from '../../../../generated/prisma';
 @Injectable()
 export class AccountService {
     constructor(private readonly prismaSevice: PrismaService) {}

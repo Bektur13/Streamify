@@ -2,12 +2,12 @@ import { Injectable, NotFoundException, UnauthorizedException, InternalServerErr
 import { Request } from 'express';
 import { ConfigService } from '@nestjs/config';
 import * as argon2 from 'argon2';
-import { PrismaService } from 'src/core/prisma/prisma.service';
+import { PrismaService } from '@/core/prisma/prisma.service';
 import type { User } from "../../generated/prisma";
 import { LoginInput } from './inputs/login.input';
 
-import { saveSession, destroySession } from 'src/shared/utils/session.util';
-import { RedisService } from 'src/core/redis/redis.service';
+import { saveSession, destroySession } from '@/shared/utils/session.util';
+import { RedisService } from '@/core/redis/redis.service';
 
 @Injectable()
 export class SessionService {

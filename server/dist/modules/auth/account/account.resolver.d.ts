@@ -3,16 +3,6 @@ import { CreateUserInput } from '../../../modules/auth/account/inputs/create-use
 export declare class AccountResolver {
     private readonly accountService;
     constructor(accountService: AccountService);
-    findAll(): Promise<{
-        username: string;
-        email: string;
-        password: string;
-        id: string;
-        displayName: string;
-        avatar: string | null;
-        bio: string | null;
-        createdAt: Date;
-        updatedAt: Date;
-    }[]>;
+    findAll(): Promise<any>;
     create(input: CreateUserInput): Promise<Boolean>;
 }

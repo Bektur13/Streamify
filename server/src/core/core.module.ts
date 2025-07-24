@@ -6,8 +6,8 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { RedisModule } from './redis/redis.module';
-import { AccountModule } from 'src/modules/auth/account/account.module';
-import { SessionModule } from 'src/session/session.module';
+import { AccountModule } from '@/modules/auth/account/account.module';
+import { SessionModule } from '@/session/session.module';
 
 @Module({
     imports: [

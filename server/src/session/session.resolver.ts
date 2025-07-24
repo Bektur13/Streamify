@@ -3,9 +3,9 @@ import { Args, Context, Mutation, Resolver } from "@nestjs/graphql";
 import { Request, Response } from "@nestjs/common";
 import { SessionService } from "./session.service";
 import { LoginInput } from "./inputs/login.input";
-import { UserModel } from "src/modules/auth/account/models/user.model";
+import { UserModel } from "@/modules/auth/account/models/user.model";
 import { GqlContextType } from "@nestjs/graphql";
-import { GqlContext } from "src/shared/types/gql-context.types";
+import { GqlContext } from "@/shared/types/gql-context.types";
 
 @Resolver(() => UserModel)
 export class SessionResolver {

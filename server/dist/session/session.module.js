@@ -11,7 +11,7 @@ const common_1 = require("@nestjs/common");
 const session_service_1 = require("./session.service");
 const session_resolver_1 = require("./session.resolver");
 const config_1 = require("@nestjs/config");
-const redis_module_1 = require("../core/redis/redis.module");
+const redis_module_1 = require("@/core/redis/redis.module");
 let SessionModule = class SessionModule {
 };
 exports.SessionModule = SessionModule;
